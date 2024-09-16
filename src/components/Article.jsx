@@ -2,6 +2,7 @@ import { useParams } from "react-router-dom";
 import { useState, useEffect } from "react";
 import { getArticleById } from "../api";
 import NotFound from "./NotFound";
+import Comments from "./Comments";
 
 function Article() {
   const { article_id } = useParams();
@@ -38,6 +39,7 @@ function Article() {
       <p>{articleById.author}</p>
       <time dateTime="">{date.toLocaleString("en-GB", dateConfig)}</time>
       <p>{articleById.body}</p>
+      <Comments/>
     </main>
   );
 }
