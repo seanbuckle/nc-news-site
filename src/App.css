@@ -1,0 +1,29 @@
+html,body,#root{
+    min-height: 100dvh;
+}
+
+#root{
+    display: grid;
+    grid-template-rows: auto 1fr auto;
+}
+
+.ncn-card{
+    display: grid;
+    grid-template-areas: 
+    "img tile"
+    "topic topic"
+    ;
+    grid-template-columns: 1fr 4fr;
+    &[class*='__img']{
+        grid-area: img;
+    }
+    &[class*='__title']{
+        grid-area: title;
+    }
+    &[class*='__topic']{
+        grid-area: topic;
+    }
+    &[class*='__time-date']{
+        grid-area: topic;
+    }
+}

@@ -15,7 +15,6 @@ function Home() {
   useEffect(() => {
     getArticles().then((articles) => {
       setAllArticles(articles);
-      console.log(allArticles);
     });
   }, []);
   return (
@@ -23,11 +22,11 @@ function Home() {
       {allArticles.map((article, i) => {
         const date = new Date(article.created_at);
         return (
-          <section key={i}>
-            <img src={article.article_img_url} alt="article image" />
-            <h2>{article.title}</h2>
-            <p>{article.topic}</p>
-            <time dateTime={date.toLocaleString("en-GB")}>
+          <section key={i} className="ncn-card">
+            <img className="ncn-card__img" src={article.article_img_url} alt="article image" />
+            <h2 className="ncn-card__title">{article.title}</h2>
+            <p className="ncn-card__topic">{article.topic}</p>
+            <time dateTime={date.toLocaleString("en-GB")} className="ncn-card__time-date">
               {date.toLocaleTimeString("en-GB", timeConfig)}{" "}
               {date.toLocaleString("en-GB", dateConfig)}{" "}
               {date.getFullYear() < new Date().getFullYear()
