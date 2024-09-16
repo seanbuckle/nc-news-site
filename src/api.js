@@ -10,3 +10,9 @@ export const getArticles = () => {
         console.log(err)
     })
 }
+
+export const getArticleById = (article_id) => {
+    return api.get(`/articles/${article_id}`).then((response) => {
+        return response.data
+    })
+}
