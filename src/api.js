@@ -1,6 +1,8 @@
+"use strict"
+
 import axios from "axios"
 
-const api = axios.create({ baseURL: "https://nc-news-de5p.onrender.com/api"})
+const api = axios.create({ baseURL: "https://nc-news-de5p.onrender.com/api" })
 
 
 export const getArticles = () => {
@@ -16,8 +18,8 @@ export const getArticleById = (article_id) => {
         return response.data
     })
 }
-export const updateArticleById = (article_id,incr) => {
-    return api.patch(`/articles/${article_id}`,incr).then((response) => {
+export const updateArticleById = (article_id, incr) => {
+    return api.patch(`/articles/${article_id}`, incr).then((response) => {
         return response.data
     })
 }
@@ -25,5 +27,11 @@ export const updateArticleById = (article_id,incr) => {
 export const getCommentsByArticleId = (article_id) => {
     return api.get(`/articles/${article_id}/comments`).then((response) => {
         return response.data
+    })
+}
+
+export const postCommentByArticleId = (article_id,postComment) => {
+    return api.post(`/articles/${article_id}/comments`, postComment).then(({data}) => {
+        return data
     })
 }

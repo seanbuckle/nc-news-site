@@ -2,9 +2,8 @@ import { useParams } from "react-router-dom";
 import { useState, useEffect } from "react";
 import { getArticleById, updateArticleById } from "../api";
 import NotFound from "./NotFound";
-import Comments from "./Comments";
 
-function Article() {
+function Article({children}) {
   const { article_id } = useParams();
   const [articleById, setArticleById] = useState([]);
   const [isError, setIsError] = useState(false);
@@ -14,7 +13,6 @@ function Article() {
     month: "long",
     year: "numeric",
   };
-
   useEffect(() => {
     getArticleById(article_id)
       .then((article) => {
@@ -74,7 +72,7 @@ function Article() {
       </button>
       <time dateTime="">{date.toLocaleString("en-GB", dateConfig)}</time>
       <p>{articleById.body}</p>
-      <Comments />
+      {children}
     </main>
   );
 }
