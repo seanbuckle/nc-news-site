@@ -8,7 +8,6 @@ function Article() {
   const { article_id } = useParams();
   const [articleById, setArticleById] = useState([]);
   const [isError, setIsError] = useState(false);
-  let numVotes = null;
 
   const dateConfig = {
     day: "numeric",
