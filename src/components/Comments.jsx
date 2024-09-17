@@ -6,6 +6,7 @@ function Comments() {
   const { article_id } = useParams();
   const [commentsByArticle, setCommentsByArticle] = useState([]);
   const [postComment, setPostComment] = useState({ username: "grumpy19" });
+  const [commentAdd, setCommentAdd] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
   const [isError, setIsError] = useState(false);
   const dateConfig = {
@@ -45,6 +46,7 @@ function Comments() {
     e.preventDefault();
     postCommentByArticleId(article_id, postComment)
       .then((comment) => {
+        setCommentAdd(true);
         setCommentsByArticle([comment, ...commentsByArticle]);
       })
       .catch((err) => {
@@ -61,17 +63,27 @@ function Comments() {
   return (
     <section>
       <h3>Comments</h3>
-      <form onSubmit={(event) => commentSubmit(event)}>
-        <input
-          type="text"
-          name="comment"
-          placeholder="Enter a comment"
-          onInput={(event) => commentInput(event)}
-        />
-        <button id="comment-btn" disabled>
-          Comment
-        </button>
-      </form>
+      {!commentAdd ? (
+        <form onSubmit={(event) => commentSubmit(event)}>
+          <input
+            type="text"
+            name="comment"
+            placeholder="Enter a comment"
+            onInput={(event) => commentInput(event)}
+          />
+          <button id="comment-btn" disabled>
+            Comment
+          </button>
+        </form>
+      ) : (
+        <>
+          <p>Comment Added</p>
+          {setTimeout(() => {
+            setCommentAdd(false);
+          }, 5000)}
+        </>
+      )}
+
       <ul>
         {commentsByArticle.map((comment, i) => {
           return (
