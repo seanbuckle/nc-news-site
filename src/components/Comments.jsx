@@ -1,12 +1,20 @@
 import { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
-import { getCommentsByArticleId, postCommentByArticleId } from "../api";
+import {
+  getCommentsByArticleId,
+  postCommentByArticleId,
+  deleteCommentById,
+} from "../api";
+import { useContext } from "react";
+import { UserContext } from "../contexts/User";
 
 function Comments() {
   const { article_id } = useParams();
+  const { user, setUser } = useContext(UserContext);
   const [commentsByArticle, setCommentsByArticle] = useState([]);
-  const [postComment, setPostComment] = useState({ username: "grumpy19" });
+  const [postComment, setPostComment] = useState({ username: user });
   const [commentAdd, setCommentAdd] = useState(false);
+  const [commentRemove, setCommentRemove] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
   const [isError, setIsError] = useState(false);
   const dateConfig = {
@@ -51,6 +59,19 @@ function Comments() {
       })
       .catch((err) => {
         console.log(err);
+      });
+  }
+
+  function removeComment(comment_id, i) {
+    deleteCommentById(comment_id)
+      .then(() => {
+        const comments = commentsByArticle.filter(
+          (comment, index) => index !== i
+        );
+        setCommentsByArticle(comments);
+      })
+      .catch((err) => {
+        return <p>Error removing comment</p>;
       });
   }
 
@@ -102,6 +123,12 @@ function Comments() {
                 </time>
                 <p>{comment.body}</p>
                 <span>{comment.votes}</span>
+
+                {comment.author === user ? (
+                  <button onClick={() => removeComment(comment.comment_id, i)}>
+                    Remove
+                  </button>
+                ) : null}
               </section>
             </li>
           );
