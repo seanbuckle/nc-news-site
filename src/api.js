@@ -16,6 +16,11 @@ export const getArticleById = (article_id) => {
         return response.data
     })
 }
+export const updateArticleById = (article_id,incr) => {
+    return api.patch(`/articles/${article_id}`,incr).then((response) => {
+        return response.data
+    })
+}
 
 export const getCommentsByArticleId = (article_id) => {
     return api.get(`/articles/${article_id}/comments`).then((response) => {
