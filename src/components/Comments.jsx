@@ -107,7 +107,6 @@ function Comments() {
 
       <ul>
         {commentsByArticle.map((comment, i) => {
-          console.log(comment);
           return (
             <li key={i}>
               <section>
