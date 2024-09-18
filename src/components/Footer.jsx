@@ -1,6 +1,6 @@
 function Footer() {
     return ( 
-        <footer>
+        <footer className="site-footer">
             <p>NC News &copy; {new Date().getFullYear()}</p>
         </footer>
      );

@@ -5,11 +5,9 @@ import axios from "axios"
 const api = axios.create({ baseURL: "https://nc-news-de5p.onrender.com/api" })
 
 
-export const getArticles = () => {
-    return api.get("/articles").then((response) => {
+export const getArticles = (topic) => {
+    return api.get("/articles", { params: { topic: topic }}).then((response) => {
         return response.data
-    }).catch((err) => {
-        console.log(err)
     })
 }
 
@@ -30,12 +28,18 @@ export const getCommentsByArticleId = (article_id) => {
     })
 }
 
-export const postCommentByArticleId = (article_id,postComment) => {
-    return api.post(`/articles/${article_id}/comments`, postComment).then(({data}) => {
+export const postCommentByArticleId = (article_id, postComment) => {
+    return api.post(`/articles/${article_id}/comments`, postComment).then(({ data }) => {
         return data
     })
 }
 
 export const deleteCommentById = (comment_id) => {
     return api.delete(`comments/${comment_id}`)
+}
+
+export const getTopics = () => {
+    return api.get("/topics").then((response) => {
+        return response.data
+    })
 }
