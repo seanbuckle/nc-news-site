@@ -5,8 +5,8 @@ import axios from "axios"
 const api = axios.create({ baseURL: "https://nc-news-de5p.onrender.com/api" })
 
 
-export const getArticles = (topic) => {
-    return api.get("/articles", { params: { topic: topic }}).then((response) => {
+export const getArticles = (topic, sort, order) => {
+    return api.get("/articles", { params: { topic: topic, sort_by: sort, order: order } }).then((response) => {
         return response.data
     })
 }
