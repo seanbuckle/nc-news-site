@@ -132,7 +132,6 @@ function Comments() {
                     </li>
                   );
                 })}
-                <SkeletonComments />
               </>
             ) : (
               <>
