@@ -7,6 +7,7 @@ import {
 } from "../api";
 import { useContext } from "react";
 import { UserContext } from "../contexts/User";
+import SkeletonComments from "./SkeletonComments";
 
 function Comments() {
   const { article_id } = useParams();
@@ -74,13 +75,6 @@ function Comments() {
         return <p>Error removing comment</p>;
       });
   }
-
-  if (isLoading) {
-    return <p>Loading Comments...</p>;
-  }
-  if (isError) {
-    return <p>Loading Comments...</p>;
-  }
   return (
     <section>
       <h3>Comments</h3>
@@ -104,36 +98,52 @@ function Comments() {
           }, 5000)}
         </>
       )}
+      {!isError ? (
+        <>
+          <ul>
+            {!isLoading ? (
+              <>
+                {commentsByArticle.map((comment, i) => {
+                  return (
+                    <li key={i}>
+                      <section>
+                        <h4>{comment.author}</h4>
+                        <time dateTime={comment.created_at}>
+                          {new Date(comment.created_at).toLocaleString(
+                            navigator.language,
+                            timeConfig
+                          )}{" "}
+                          {new Date(comment.created_at).toLocaleString(
+                            navigator.language,
+                            dateConfig
+                          )}
+                        </time>
+                        <p>{comment.body}</p>
+                        <span>{comment.votes}</span>
 
-      <ul>
-        {commentsByArticle.map((comment, i) => {
-          return (
-            <li key={i}>
-              <section>
-                <h4>{comment.author}</h4>
-                <time dateTime={comment.created_at}>
-                  {new Date(comment.created_at).toLocaleString(
-                    navigator.language,
-                    timeConfig
-                  )}{" "}
-                  {new Date(comment.created_at).toLocaleString(
-                    navigator.language,
-                    dateConfig
-                  )}
-                </time>
-                <p>{comment.body}</p>
-                <span>{comment.votes}</span>
-
-                {comment.author === user ? (
-                  <button onClick={() => removeComment(comment.comment_id, i)}>
-                    Remove
-                  </button>
-                ) : null}
-              </section>
-            </li>
-          );
-        })}
-      </ul>
+                        {comment.author === user ? (
+                          <button
+                            onClick={() => removeComment(comment.comment_id, i)}
+                          >
+                            Remove
+                          </button>
+                        ) : null}
+                      </section>
+                    </li>
+                  );
+                })}
+                <SkeletonComments />
+              </>
+            ) : (
+              <>
+                <SkeletonComments />
+              </>
+            )}
+          </ul>
+        </>
+      ) : (
+        <p>No comments</p>
+      )}
     </section>
   );
 }
