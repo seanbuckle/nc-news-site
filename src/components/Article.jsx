@@ -44,37 +44,48 @@ function Article({ children }) {
   }
 
   return (
-    <main>
+    <main className="main-article">
       {!isError ? (
         <>
           {!isLoading ? (
             <>
               <h2>{articleById.title}</h2>
               <img src={articleById.article_img_url} alt="" />
-              <p>{articleById.author}</p>
-              <button onClick={() => incrementArticleVote(1)}>
-                <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  height="24px"
-                  viewBox="0 -960 960 960"
-                  width="24px"
-                  fill="#000000"
-                >
-                  <path d="m280-400 200-200 200 200H280Z" />
-                </svg>
-              </button>
-              <span>{articleById.votes}</span>
-              <button onClick={() => incrementArticleVote(-1)}>
-                <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  height="24px"
-                  viewBox="0 -960 960 960"
-                  width="24px"
-                  fill="#000000"
-                >
-                  <path d="M480-360 280-560h400L480-360Z" />
-                </svg>
-              </button>
+              <div className="vote-group">
+                <p>{articleById.author}</p>
+                <div>
+                  <button
+                    onClick={() => incrementArticleVote(1)}
+                    className="btn--icon btn--icon-outline"
+                  >
+                    <svg
+                      xmlns="http://www.w3.org/2000/svg"
+                      height="24px"
+                      viewBox="0 -960 960 960"
+                      width="24px"
+                      fill="#000000"
+                    >
+                      <path d="m280-400 200-200 200 200H280Z" />
+                    </svg>
+                  </button>
+                  <span>{articleById.votes}</span>
+                  <button
+                    onClick={() => incrementArticleVote(-1)}
+                    className="btn--icon btn--icon-outline"
+                  >
+                    <svg
+                      xmlns="http://www.w3.org/2000/svg"
+                      height="24px"
+                      viewBox="0 -960 960 960"
+                      width="24px"
+                      fill="#000000"
+                    >
+                      <path d="M480-360 280-560h400L480-360Z" />
+                    </svg>
+                  </button>
+                </div>
+              </div>
+
               <time dateTime="">
                 {date.toLocaleString("en-GB", dateConfig)}
               </time>
@@ -82,7 +93,7 @@ function Article({ children }) {
             </>
           ) : (
             <>
-            <SkeletonArticle/>
+              <SkeletonArticle />
             </>
           )}
 

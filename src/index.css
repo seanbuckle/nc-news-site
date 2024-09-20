@@ -1,9 +1,71 @@
-*{
-    padding: 0;
-    margin: 0;
-    box-sizing: border-box;
+@font-face {
+  font-family: 'Roboto Slab';
+  src: local('Roboto Slab'), url(./assets/Fonts/RobotoSlab-VariableFont_wght.woff2) format('woff2');
+}
+@font-face {
+  font-family: 'Roboto';
+  src: local('Roboto'), url(./assets/Fonts/Roboto-Regular.woff2) format('woff2');
+}
+@font-face {
+  font-family: 'Roboto';
+  src: local('Roboto'), url(./assets/Fonts/Roboto-Medium.woff2) format('woff2');
 }
 
-img{
-    max-width: 100%;
+
+* {
+  padding: 0;
+  margin: 0;
+  font: inherit;
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html {
+  color-scheme: light dark;
+}
+
+:root{
+  --ff-1: "Roboto", san-serif;
+  --ff-2: "Roboto Slab", serif;
+
+}
+
+h1,
+h2,
+h2,
+h4,
+h5,
+h6 {
+  display: block;
+  text-wrap: balance;
+  font-family: var(--ff-2);
+}
+
+p,
+li,
+figcaption {
+  text-wrap: pretty;
+}
+
+header, section, footer,
+main,article{
+    container-type: inline-size;
+}
+
+a {
+  text-decoration: none;
+  color: currentColor;
+}
+
+img {
+  max-width: 100%;
+}
+
+body{
+  font-family: var(--ff-1);
+  font-weight: 400;
 }
