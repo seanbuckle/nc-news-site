@@ -13,11 +13,14 @@ function Header() {
     });
   }, []);
   return (
-    <header id="site-header" className="site-header">
-      <Link to="/">
-        <h1>Northcoders News</h1>
-      </Link>
-    </header>
+    <>
+      <div class="trigger"></div>
+      <header id="site-header" className="site-header">
+        <Link to="/">
+          <h1>Northcoders News</h1>
+        </Link>
+      </header>
+    </>
   );
 }
 
