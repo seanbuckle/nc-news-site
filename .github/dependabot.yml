@@ -8,8 +8,14 @@ updates:
   - package-ecosystem: "github-actions" # See documentation for possible values
     directory: "/" # Location of package manifests
     schedule:
-      interval: "weekly"
+      interval: "daily"
+    target-branch: "main"
+    commit-message:
+      prefix: "chore:"
   - package-ecosystem: "npm" # See documentation for possible values
     directory: "/" # Location of package manifests
     schedule:
-      interval: "weekly"
+      interval: "daily"
+    target-branch: "main"
+    commit-message:
+      prefix: "chore:"
