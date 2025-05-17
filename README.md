@@ -1,5 +1,7 @@
 # Northcoders News
 
+![Screenshot of Northcoders news](/images/screenshot.png)
+
 Northcoders News is a social news aggregation, web content rating, and discussion website, similar to [Reddit](https://www.reddit.com/).
 
 Northcoders News has articles, which are divided into topics. Each article has user curated ratings and can be up or down voted using the [API](https://github.com/seanbuckle/nc-news).
